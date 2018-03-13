@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.grey.ssm.wechat.dao.GADao">
+    <insert id="insertGA">
+        insert into group_activity(GID,AID,CreateID,numbers,title,time,content)values (#{GID},#{AID},#{CreateID},#{numbers},#{title},#{time},#{content})
+    </insert>
+    <select id="queryGAByGID" parameterType="int" >
+        select * from group_activity where GID=#{GID}
+    </select>
+    <select id="queryGAByAID" parameterType="int" >
+        select * from group_activity where AID=#{AID}
+    </select>
+    <select id="queryGAByCreateID" parameterType="int" >
+        select * from group_activity where CreateID=#{CreateID}
+    </select>
+    <update id="uodateGA">
+        update group_activity set AID=#{AID},CreateID=#{CreateID},numbers=#{numbers},title=#{title},time=#{time},content=#{content} where GID=#{GID} and AID=#{AID}
+    </update>
+    <delete id="deleteGA">
+        delete from  group_activity where GID=#{GID} and  AID=#{AID}
+    </delete>
+</mapper>

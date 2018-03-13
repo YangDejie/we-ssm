@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.grey.ssm.wechat.dao.AMDao">
+    <insert id="insertAM">
+        insert into activity_members(AID,UID)values (#{AID},#{UID})
+    </insert>
+    <select id="queryAMByAID" parameterType="int" >
+        select * from activity_members where AID=#{AID}
+    </select>
+    <select id="queryAMByUID" parameterType="int">
+        select * from activity_members where UID = #{UID}
+    </select>
+    <delete id="deleteAM">
+        delete from  group where AID = #{AID} and  UID = #{UID}
+    </delete>
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.grey.ssm.wechat.dao.UIDao">
+    <select id="queryUIByUID" parameterType="int">
+        select * from user_info WHERE UID=#{UID}
+    </select>
+    <insert id="insertUI">
+       insert into user_info(UID,aboutLove,homeTown,nowLiveAt,zodiacSign,bloodCate,moto,constellation,profession,company)values (#{UID},#{aboutLove},#{homeTown},#{nowLiveAt},#{zodiacSign},#{bloodCate},#{moto},#{constellation},#{profession},#{company})
+    </insert>
+    <update id="updateUI">
+         update user_info set aboutLove=#{aboutLove},homeTown=#{homeTown},nowLiveAt=#{nowLiveAt},zodiacSign=#{zodiacSign},bloodCate=#{bloodCate},moto=#{moto},constellation=#{constellation},profession=#{profession},company=#{company} where UID=#{UID}
+    </update>
+    <delete id="deleteUIByUID" parameterType="int">
+        delete from user_info  where UID=#{UID}
+    </delete>
+</mapper>

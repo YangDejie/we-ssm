@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.grey.ssm.wechat.dao.GroupDao">
+    <insert id="insertGroup">
+        insert into group(GID,UID,InviteCode,GName)values (#{GID},#{UID},#{inviteCode},#{GName})
+    </insert>
+    <select id="queryGroupByGID" parameterType="int" >
+        select * from group where GID=#{GID}
+    </select>
+    <select id="queryGroupByUID" parameterType="int">
+        select * from group where UID=#{UID}
+    </select>
+    <update id="updateGroup">
+        update group set UID=#{UID},InviteCode=#{InviteCode},GName=#{GName} where GID=#{GID}
+    </update>
+    <delete id="deleteGroupByGID">
+        delete from  group where GID=#{GID}
+    </delete>
+</mapper>
