@@ -1,6 +1,7 @@
 package com.grey.ssm.wechat.web;
 
 
+import com.grey.ssm.wechat.model.Group;
 import com.grey.ssm.wechat.model.User;
 import com.grey.ssm.wechat.service.GroupService;
 import com.grey.ssm.wechat.service.LoginService;
@@ -77,10 +78,10 @@ public class GroupController {
             session.setAttribute("re_url","/create_group");
             res.sendRedirect("/login");
         }else {
-            req.getRequestDispatcher("/WEB-INF/jsp/invite_code.jsp").forward(req,res);
+            req.getRequestDispatcher("/WEB-INF/jsp/create_group.jsp").forward(req,res);
         }
     }
-    //创建群页面
+    //创建群
     @RequestMapping(value = "/create_group",method = RequestMethod.POST)
     private void createGroup(HttpServletRequest req,HttpServletResponse res) throws Exception{
         HttpSession session = req.getSession();
@@ -97,9 +98,94 @@ public class GroupController {
             }else {
                 String GName = req.getParameter("GName");
                 String inviteCode = req.getParameter("inviteCode");
-                int isVisible = req.getIntHeader("isVisible");
+                int isVisible = Integer.parseInt(req.getParameter("isVisible"));
                 groupService.createGroup(GID,GName,inviteCode,isVisible);
+                Group group = groupService.findGroup(GID);
+                req.setAttribute("Group",group);
+                res.sendRedirect("/group_detail");
             }
         }
     }
+
+    //查找群页面
+    @RequestMapping(value = "/find_group", method = RequestMethod.GET)
+    private void   findGroupPage(HttpServletRequest req,HttpServletResponse res) throws Exception{
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+        if(user ==null){
+            session.setAttribute("re_url","/find_group");
+            res.sendRedirect("/login");
+        }else {
+            req.getRequestDispatcher("/WEB-INF/jsp/find_code.jsp").forward(req,res);
+        }
+    }
+    //查找群
+    @RequestMapping(value = "/find_group", method = RequestMethod.POST)
+    private void   findGroup(HttpServletRequest req,HttpServletResponse res) throws Exception{
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+        if(user ==null){
+            session.setAttribute("re_url","/find_group");
+            res.sendRedirect("/login");
+        }else {
+            int GID = Integer.parseInt(req.getParameter("GID"));
+            boolean isExsitG = groupService.isExsitGroup(GID);
+            if(isExsitG){
+                Group group = groupService.findGroup(GID);
+                String invite_code = req.getParameter("inviteCode");
+                if (group.getInviteCode().equals(invite_code)){
+                    group.addMember(GID,user.getUID(),0);
+                    Group nowGroup = groupService.findGroup(GID);
+                    req.setAttribute("group",nowGroup);
+                    res.sendRedirect("/group_detail");
+                }
+
+
+            }else {
+                req.setAttribute("find_group","群"+GID+"不存在，需要创建其他ID群组");
+                res.sendRedirect("/find_group");
+            }
+        }
+    }
+    //加入群页面
+    @RequestMapping(value = "/join_group",method = RequestMethod.GET)
+    private void joinGroupPage(HttpServletRequest req,HttpServletResponse res) throws Exception{
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+        if(user ==null){
+            session.setAttribute("re_url","/join_group");
+            res.sendRedirect("/login");
+        }else {
+            req.getRequestDispatcher("/WEB-INF/jsp/join_group.jsp").forward(req,res);
+        }
+    }
+    //加入群
+    @RequestMapping(value = "/join_group",method = RequestMethod.POST)
+    private void joinGroup(HttpServletRequest req,HttpServletResponse res) throws Exception{
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+        if(user ==null){
+            session.setAttribute("re_url","/join_group");
+            res.sendRedirect("/login");
+        }else {
+            int GID = Integer.parseInt(req.getParameter("GID"));
+            boolean isExsitG = groupService.isExsitGroup(GID);
+            if(isExsitG){
+                Group group = groupService.findGroup(GID);
+                if (group.getInviteCode().equals(req.getParameter("inviteCode"))){
+                    Group nowGroup = groupService.findGroup(GID);
+                    req.setAttribute("group",nowGroup);
+                    req.setAttribute("join_group",null);
+                    res.sendRedirect("/group_detail");
+                }else {
+                    req.setAttribute("join_group","群"+GID+"不存在");
+                    res.sendRedirect("/join_group");
+                }
+            }else {
+                req.setAttribute("join_group","群"+GID+"不存在");
+                res.sendRedirect("/join_group");
+            }
+        }
+    }
+
 }

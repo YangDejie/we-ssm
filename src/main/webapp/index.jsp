@@ -26,13 +26,13 @@
                     <img class="li-img" src="./icon/icon_invite_code.png" alt="">
                 </div>
             </li>
-            <li class onclick="javascript:window.location.href='join_group.jsp'">
+            <li class onclick="javascript:window.location.href='join_group'">
                 <div class="weui-flex ">
                     <p  class="weui-flex_item">申请入群</p>
                     <img class="li-img" src="./icon/icon_group.png" alt="">
                 </div>
             </li>
-            <li class onclick="javascript:window.location.href='WEB-INF/jsp/profile.jsp'">
+            <li class onclick="javascript:window.location.href='profile'">
                 <div class="weui-flex ">
                     <p  class="weui-flex_item">个人设置</p>
                     <img class="li-img" src="./icon/icon_profile.png" alt="">

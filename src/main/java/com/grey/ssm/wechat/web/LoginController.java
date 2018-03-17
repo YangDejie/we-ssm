@@ -95,4 +95,18 @@ public class LoginController {
 
     }
 
+    //profile 页
+    @RequestMapping(value = "/prpfile",method = RequestMethod.GET)
+    private void profilePage(HttpServletRequest req, HttpServletResponse res) throws  Exception{
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+        if(user ==null){
+            session.setAttribute("re_url","/profile");
+            res.sendRedirect("/login");
+        }else {
+
+        }
+    }
+
+
 }

@@ -3,13 +3,13 @@ package com.grey.ssm.wechat.model;
 public class Group {
     private int GID;
     private int UID;
-    private int InviteCode;
+    private String InviteCode;
     private String GName;
     public Group(){
 
     }
 
-    public Group(int GID, int UID, int inviteCode, String GName) {
+    public Group(int GID, int UID, String inviteCode, String GName) {
         this.GID = GID;
         this.UID = UID;
         InviteCode = inviteCode;
@@ -32,11 +32,11 @@ public class Group {
         this.UID = UID;
     }
 
-    public int getInviteCode() {
+    public String getInviteCode() {
         return InviteCode;
     }
 
-    public void setInviteCode(int inviteCode) {
+    public void setInviteCode(String inviteCode) {
         InviteCode = inviteCode;
     }
 
@@ -56,5 +56,8 @@ public class Group {
                 ", InviteCode=" + InviteCode +
                 ", GName='" + GName + '\'' +
                 '}';
+    }
+
+    public void addMember(int gid, int uid, int i) {
     }
 }
