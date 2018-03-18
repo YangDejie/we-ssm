@@ -10,7 +10,7 @@
         insert into user(UID,userName,nickName,passWord,sex,birthday,age,email,telephone) values (#{UID},#{userName},#{nickName},#{passWord},#{sex},#{birthday},#{age},#{email},#{telephone})
     </insert>
     <update id="updateUser">
-        update user set userName = #{userName},nickName = #{nickName},passWord = #{passWord},sex = #{sex},birthday = #{birthday},age = #{age},email = #{email},telephone = #{telephone},avatar = #{avatar} where UID = #{UID}
+        update user set userName = #{userName},nickName = #{nickName},sex = #{sex},birthday = #{birthday},age = #{age},email = #{email},telephone = #{telephone} where UID = #{UID}
     </update>
     <delete id="deleteUser" parameterType="int">
         delete from user  where UID = #{UID}

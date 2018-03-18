@@ -4,24 +4,33 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.grey.ssm.wechat.dao.GMDao">
     <insert id="insertGM">
-         insert into group_members(GID,UID,status,privilege)values (#{GID},#{UID},#{status},#{privilege})
+         insert into  wechat.group_members(GID,UID,status,privilege)values (#{GID},#{UID},#{status},#{privilege})
     </insert>
-    <select id="queryGMByGID" parameterType="int">
-        select * from group_members where GID=#{GID}
+    <select id="queryGMByGID" parameterType="int" resultType="com.grey.ssm.wechat.model.GroupMembers">
+        select * from  wechat.group_members where GID=#{GID}
     </select>
-    <select id="queryGMByUID" parameterType="int">
-        select * from group_members where UID=#{UID}
+    <select id="queryGMByStatusAndGID"  resultType="com.grey.ssm.wechat.model.GroupMembers">
+        select * from  wechat.group_members where GID=#{GID} and status=#{status}
     </select>
-    <select id="queryIDByUserInfo" resultType="int">
-        select gm.UID from group_members as gm
-        inner join user on gm.UID = user.UID
-        inner join user_info on gm.UID=user_info.UID
-        where user.nickName=#{nickName} and user.sex=#{sex} and user.age &gt;= #{low_age} and user.age &lt;=#{high_age} and user_info.nowLiveAt=#{nowLiveAt} and user_info.homeTown=#{homeTown} and user_info.aboutLove=#{aboutLove}
+    <select id="queryGMByUID" parameterType="int" resultType="com.grey.ssm.wechat.model.GroupMembers">
+        select * from wechat.group_members where UID=#{UID}
+    </select>
+    <select id="queryGMByGIDAndUID" resultType="com.grey.ssm.wechat.model.GroupMembers">
+        select * from wechat.group_members where UID=#{UID} and GID=#{GID}
+    </select>
+    <select id="queryIDByUserInfo" resultType="Integer">
+        select user.UID from user
+          inner join  user_info on user.UID=user_info.UID
+        where user.nickName=#{nickName} and user.sex=#{sex}
+          and user.age &gt;= #{low_age} and user.age &lt;= #{high_age}
+          and user_info.nowLiveAt=#{nowLiveAt} and user_info.homeTown=#{homeTown}
+          and user_info.aboutLove=#{aboutLove} and user_info.profession=#{profession}
     </select>
     <update id="updateGM">
-        update group_members set status=#{status},privilege=#{privilege} where GID=#{GID} and UID=#{UID}
+        update  wechat.group_members set status=#{status},privilege=#{privilege} where GID=#{GID} and UID=#{UID}
     </update>
+
     <delete id="deleteGM">
-        delete from  group_members where GID=#{GID} and  UID=#{UID}
+        delete from   wechat.group_members where GID=#{GID} and  UID=#{UID}
     </delete>
 </mapper>

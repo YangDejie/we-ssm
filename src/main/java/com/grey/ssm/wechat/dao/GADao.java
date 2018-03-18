@@ -12,7 +12,7 @@ public interface GADao {
                  @Param("title")String title, @Param("time")Date time,
                  @Param("content")String content);
     List<GroupActivity> queryGAByGID(@Param("GID")int GID);
-    List<GroupActivity> queryGAByAID(@Param("GID")int AID);
+    List<GroupActivity> queryGAByAID(@Param("AID")int AID);
     List<GroupActivity> queryGAByCreateID(@Param("CreateID")int CreateID);
     int updateGA(@Param("GID")int GID, @Param("AID")int AID,
                  @Param("CreateID")int CreateID, @Param("numbers")int numbers,
@@ -20,4 +20,5 @@ public interface GADao {
                  @Param("content")String content);
     void deleteGA(@Param("GID")int GID,@Param("AID")int AID);
 
+    List<GroupActivity> getAll();
 }

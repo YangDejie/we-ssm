@@ -6,10 +6,14 @@
     <insert id="insertGA">
         insert into group_activity(GID,AID,CreateID,numbers,title,time,content)values (#{GID},#{AID},#{CreateID},#{numbers},#{title},#{time},#{content})
     </insert>
-    <select id="queryGAByGID" parameterType="int" >
+
+    <select id="queryGAByGID" parameterType="int" resultType="com.grey.ssm.wechat.model.GroupActivity">
         select * from group_activity where GID=#{GID}
     </select>
-    <select id="queryGAByAID" parameterType="int" >
+    <select id="getAll" resultType="com.grey.ssm.wechat.model.GroupActivity">
+        select * from group_activity
+    </select>
+    <select id="queryGAByAID" parameterType="int" resultType="com.grey.ssm.wechat.model.GroupActivity">
         select * from group_activity where AID=#{AID}
     </select>
     <select id="queryGAByCreateID" parameterType="int" >

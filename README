@@ -1,0 +1,7 @@
+select gm.UID from  wechat.group_members as gm
+        inner join  wechat.user as user on gm.UID = user.UID
+        inner join  wechat.user_info as user_info on gm.UID=user_info.UID
+        where user.nickName=#{nickName} and user.sex=#{sex}
+              and user.age &gt;= #{low_age} and user.age &lt;=#{high_age}
+              and user_info.nowLiveAt=#{nowLiveAt} and user_info.homeTown=#{homeTown}
+              and user_info.aboutLove=#{aboutLove} and user_info.profession=#{profession}

@@ -6,10 +6,10 @@
     <insert id="insertAM">
         insert into activity_members(AID,UID)values (#{AID},#{UID})
     </insert>
-    <select id="queryAMByAID" parameterType="int" >
+    <select id="queryAMByAID" parameterType="int" resultType="com.grey.ssm.wechat.model.ActivityMembers">
         select * from activity_members where AID=#{AID}
     </select>
-    <select id="queryAMByUID" parameterType="int">
+    <select id="queryAMByUID" parameterType="int" resultType="com.grey.ssm.wechat.model.ActivityMembers">
         select * from activity_members where UID = #{UID}
     </select>
     <delete id="deleteAM">

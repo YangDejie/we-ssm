@@ -38,28 +38,16 @@
                     <img class="li-img" src="./icon/icon_profile.png" alt="">
                 </div>
             </li>
-            <li class onclick="javascript:window.location.href='find_user.jsp'">
+            <li class onclick="javascript:window.location.href='find_user'">
                 <div class="weui-flex ">
                     <p  class="weui-flex_item">搜索用户</p>
                     <img class="li-img" src="./icon/icon_find_user.png" alt="">
                 </div>
             </li>
-            <li class onclick="javascript:window.location.href='create_activity.jsp'">
+            <li class onclick="javascript:window.location.href='create_activity'">
                 <div class="weui-flex ">
                     <p  class="weui-flex_item">发布活动</p>
                     <img class="li-img" src="./icon/icon_create_activity.png" alt="">
-                </div>
-            </li>
-            <li class onclick="javascript:window.location.href='view_activity.jsp'">
-                <div class="weui-flex ">
-                    <p  class="weui-flex_item">查看群活动</p>
-                    <img class="li-img" src="./icon/icon_view_activity.png" alt="">
-                </div>
-            </li>
-            <li class onclick="javascript:window.location.href='hot_activity.jsp'">
-                <div class="weui-flex ">
-                    <p  class="weui-flex_item">所有热门</p>
-                    <img class="li-img" src="./icon/icon_hot_activity.png" alt="">
                 </div>
             </li>
         </ul>

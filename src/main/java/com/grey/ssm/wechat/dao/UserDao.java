@@ -16,9 +16,9 @@ public interface UserDao {
                    @Param("age")int age,
                    @Param("email")String email,
                    @Param("telephone")String telephone);
-    int updateUser(@Param("UID") int uid,
+    void updateUser(@Param("UID") int uid,
                    @Param("userName") String userName,
-                   @Param("nickName") String passWord,
+                   @Param("nickName") String nickName,
                    @Param("sex") int sex,
                    @Param("birthday")Date birthday,
                    @Param("age")int age,
