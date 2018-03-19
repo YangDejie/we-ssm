@@ -83,7 +83,7 @@ public class GroupController {
             session.setAttribute("re_url","/create_group");
             res.sendRedirect("/login");
         }else {
-            req.getRequestDispatcher("/WEB-INF/jsp/create_group.jsp").forward(req,res);
+            req.getRequestDispatcher("/WEB-INF/jsp/group_create.jsp").forward(req,res);
         }
     }
     //创建群
